@@ -1,48 +1,21 @@
 ﻿class Program
 {
+
     private static Dictionary<char, int> CharCount(string s)
     {
         Dictionary<char, int> dictionary = new Dictionary<char, int>();
 
-        int[] counts = new int[s.Length];
-
-        foreach (char c in counts)
-        {
-            counts[c] = 0;
-        }
-
         for (int i = 0; i < s.Length; i++)
         {
-            char tmp = s[i];
 
-            for (int j = 0; j < s.Length; j++)
-            {
-                if (s[j] == tmp)
-                {
-                    counts[i]++;
-                }
-            }
-
-            if (counts[i] < 1)
-            {
-                dictionary.Add(tmp, counts[i]);
-            }
+            if (dictionary.ContainsKey(s[i])) // Проверяет есть ли такой ключ уже
+                dictionary[s[i]]++; // +1
             else
-            {
-                try
-                {
-                    dictionary.Add(tmp, counts[i]);
-                }
-                catch (ArgumentException)
-                {
-                    //do nothing
-                }
-            }
+                dictionary.Add(s[i], 1);
         }
 
         return dictionary;
     }
-
 
     public static void Main(string[] args)
     {
